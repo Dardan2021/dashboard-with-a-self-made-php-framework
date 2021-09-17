@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<h1>WELCOME TO OUR FRAMEWORK</h1>
+<h1>WELCOME TO OUReew FRAMEWORK</h1>
 
 </body>
 </html>
