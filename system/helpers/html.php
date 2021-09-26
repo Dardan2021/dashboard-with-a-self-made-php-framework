@@ -1,5 +1,9 @@
 <?php
-    function anchor($href, $value, $option)
+function anchor($href, $value, $option=array())
+{
+
+
+    if(isset($option))
     {
         if (array_key_exists('class', $option))
         {
@@ -18,9 +22,17 @@
         {
             $id = null;
         }
-
-        $url = BASE_URL."/".$href;
-
-        return "<a href='".$url."' class='".$class."' id='".$id."'>'.$value.'</a>";
     }
+
+    else
+    {
+        $id = null;
+        $class = null;
+    }
+
+
+    $url = BASE_URL.$href;
+
+    return "<a href='".$url."' class='".$class."' id='".$id."'>$value</a>";
+}
 ?>
