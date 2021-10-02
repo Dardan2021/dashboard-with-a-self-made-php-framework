@@ -113,7 +113,7 @@ function formOpen($action, $method, $option)
         $id = null;
     }
 
-    return '<form method="'.$method.'" class="'.$class.'" action="' . BASE_URL . "/" . $action . '" id="'.$id.'" enctype="multipart/form-data">';
+    return '<form method="'.$method.'" class="'.$class.'"  id="'.$id.'" enctype="multipart/form-data">';
 }
 
 function formClose()

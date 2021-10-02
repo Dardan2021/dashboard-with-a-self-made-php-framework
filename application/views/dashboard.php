@@ -8,17 +8,6 @@
     <title>HTML 5 Boilerplate</title>
     <?php include "components/header.php" ;?>
 <body>
-
-<div class="loader">
-    <div class="loader-section">
-        <div class="loader-circle">
-            <div class="element">
-
-            </div>
-        </div>
-    </div>
-</div>
-
 <nav>
     <?php include "components/nav.php" ;?>
 </nav>

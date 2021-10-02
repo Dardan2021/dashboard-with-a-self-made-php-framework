@@ -12,10 +12,7 @@
     <div class="container">
         <?php myFramework::view($data['signupForm']); ?>
     </div>
-
-    <div class="background">
-
-    </div>
+    <div class="background"></div>
     <?php include "components/footer.php" ;?>
 
 </body>

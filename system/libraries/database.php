@@ -21,7 +21,6 @@ class database
         {
             $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->database;
             self::$db = new PDO($dsn, $this->username, $this->password);
-            echo "u lidh";
         } catch (PDOException $e)
         {
             echo "Database Connection error: " . $e->getMessage();

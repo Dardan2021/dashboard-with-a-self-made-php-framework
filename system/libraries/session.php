@@ -36,7 +36,8 @@ trait session
     {
         if(!empty($name))
         {
-            echo "<div class='" . $class . "'>" . $_SESSION[$name] . "</div>";
+
+            echo "<p class='" . $class . " '>" . $_SESSION[$name] . "</p>";
             unset($_SESSION[$name]);
         }
     }
