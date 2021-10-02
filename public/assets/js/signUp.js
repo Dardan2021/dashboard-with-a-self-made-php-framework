@@ -26,7 +26,7 @@ $(document).ready(function(){
 
         $.ajax({
             type:'POST',
-            url:'ajaxController/ajax',
+            url:'ajax/ajaxController/ajax',
             data:
                 {
                     formData: JSON.stringify(newArray),
@@ -62,3 +62,6 @@ $(document).ready(function(){
         })
     });
 });
+
+
+
