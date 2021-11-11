@@ -6,10 +6,16 @@ trait formValidation
 
   public static function validation($value, $label, $rules)
   {
-     if (!empty($value))
+      if (is_array($value))
+      {
+          $data = $value;
+      }
+     else if (!empty($value))
      {
          $data = trim($value);
      }
+
+
 
      $pattren = "/^[a-zA-Z]+$/";
      $intPattren = "/^[0-9]+$/";
@@ -91,6 +97,21 @@ trait formValidation
               if (database::countData($tableName, array('email' => $data)) > 0)
               {
                   return self::$error[$label] = " this email already exists";
+              }
+          }
+      }
+
+      else if (in_array("authentication", $rules))
+      {
+          $uniqueIndex = array_search("authentication", $rules);
+          $tableIndex = $uniqueIndex + 1;
+          $tableName = $rules[$tableIndex];
+
+          if (isset($data))
+          {
+              if (database::countData($tableName, array('email' => $data['email'],"password"=>$data['password'])) == 0)
+              {
+                  return self::$error[$label] = " this email and pasword do not exists";
               }
           }
       }

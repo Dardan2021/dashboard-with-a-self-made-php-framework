@@ -41,6 +41,21 @@ class ajaxController  extends myFramework
 
             case 'loginUser':
 
+                $values = json_decode($post['formData'], true);
+
+                $emailPassword= array("email"=>$values["email"],"password"=>$values["password"]);
+                $errorEmailFind =  self::validation($emailPassword, "Email", "authentication|userstable");
+
+
+                if (self::run())
+                {
+                    echo json_encode(['status'=>'success']);
+                }
+                else
+                {
+                    echo json_encode($errorEmailFind);
+                }
+
                 break;
 
         }
