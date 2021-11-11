@@ -10,7 +10,7 @@ $default = array('defaultController' => 'welcome',
     'method' => 'index',
     'defaultParam' => [] );
 
-$settings = array('base_url' => 'https://localhost/php/public');
+$settings = array('base_url' => 'https://localhost/dashboard/public/');
 
 
 
