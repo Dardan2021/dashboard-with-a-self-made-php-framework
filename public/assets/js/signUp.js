@@ -61,6 +61,36 @@ $(document).ready(function(){
             }
         })
     });
+
+
+    $( "#loginForm" ).submit(function(e) {
+
+        var str = $( "#loginForm" ).serializeArray();
+        var newArray = objectifyForm(str);
+
+        $.ajax({
+            type:'POST',
+            url:'ajax/ajaxController/ajax',
+            data:
+                {
+                    formData: JSON.stringify(newArray),
+                    ajaxCall: "loginUser"
+                },
+            success: function( errorMsg )
+            {
+                var errorMsg = JSON.parse(errorMsg);
+                if($('#errorAuthenticationText').length === 0)
+                {
+                    $("#errorEmail").append("<p id='errorAuthentication'></p>");
+                    $("#errorAuthenticationText").append(errorMsg);
+                }
+                if(errorMsg.status=="success")
+                {
+                    location.href = "https://localhost/dashboard/profile";
+                }
+            }
+        })
+    });
 });
 
 

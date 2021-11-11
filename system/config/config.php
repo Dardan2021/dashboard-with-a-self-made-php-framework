@@ -3,7 +3,7 @@
 $database = array(
     'host' => 'localhost',
     'username' => 'root',
-    'database' => 'php_mvc',
+    'database' => 'userstable',
     'password' => '');
 
 $default = array('defaultController' => 'welcome',

@@ -48,15 +48,14 @@ class database
                 $queryArray[] = "$columns='$value'";
             }
 
-            $querySql = implode(",", $queryArray);
-
+            $querySql = implode("AND ", $queryArray);
             self::Query("SELECT * FROM " . "$tableName " . "WHERE " . "$querySql");
             self::$Query->execute();
 
             return self::$Query->rowCount();
         }
 
-        if(empty($filter))
+        else if(empty($filter))
         {
             self::Query("SELECT * FROM " . "$tableName ");
             self::$Query->execute();
