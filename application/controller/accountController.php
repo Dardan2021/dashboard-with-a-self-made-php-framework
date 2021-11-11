@@ -17,4 +17,10 @@ class accountController extends myFramework
 
         self::view("login",  $data);
     }
+
+    public static function logout()
+    {
+        self::destroySession();
+        self::login();
+    }
 }
