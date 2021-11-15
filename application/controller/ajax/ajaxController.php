@@ -47,20 +47,20 @@ class ajaxController  extends myFramework
                 $errorEmailFind =  self::validation($emailPassword, "Email", "authentication|userstable");
                 if (self::run())
                 {
-
                     $datas = userModel::fetchAllData('userstable', array('email' => $values['email'],"password"=> $values['password']), array("fetch"=>'value'));
 
+                    self::setSession("id",$datas['id']);
 
-                    var_dump($datas);
-
+                    $sessionData = [
+                        'id'=>$datas['id'],
+                        'name'=>$datas['full_name']
+                    ];
+                    self::setSession($sessionData,"");
                     echo json_encode(['status'=>'success']);
-
                 }
                 else
                 {
                     echo json_encode($errorEmailFind);
-
-
                 }
 
                 break;

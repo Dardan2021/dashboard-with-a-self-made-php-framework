@@ -74,7 +74,8 @@ class userModel extends Database
             $joinSql = implode(" ", $querySqlJoin);
             self::Query("SELECT * FROM $tableName $joinSql");
 
-            return self::fetchData();
+            $data = json_decode(json_encode(self::fetchData()),true);
+            return $data;
         }
 
         else if(empty($filter) && empty($params))

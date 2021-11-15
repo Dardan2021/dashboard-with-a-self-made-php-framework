@@ -6,7 +6,6 @@ class profile extends myFramework
     {
         $data['layout'] = "components/changeName";
         $data['title'] = "Change Name";
-
         self::view("dashboard",  $data);
     }
 

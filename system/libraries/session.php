@@ -57,6 +57,14 @@ trait session
         }
     }
 
+    public static function getSession($name)
+    {
+        if(!empty($name))
+        {
+            return $_SESSION[$name];
+        }
+    }
+
     public static function destroySession()
     {
         session_destroy();

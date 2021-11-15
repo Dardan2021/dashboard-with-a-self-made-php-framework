@@ -79,6 +79,7 @@ $(document).ready(function(){
             success: function( errorMsg )
             {
                 var errorMsg = JSON.parse(errorMsg);
+                console.log(errorMsg.status);
                 if($('#errorAuthenticationText').length === 0)
                 {
                     $("#errorAuthentication").append("<p id='errorAuthenticationText'></p>");

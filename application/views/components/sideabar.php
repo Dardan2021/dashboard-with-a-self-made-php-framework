@@ -4,7 +4,7 @@
             <?php echo anchor("#", '<span class="profileFirst"><img src="'.BASE_URL.'assets/images/background.jpg" alt="" class="imgProfile"></span>');?>
         </li>
         <li>
-            <?php echo anchorVoid("javascript:void(0)", '<span class="icon">&#9775</span>Dardan Madani');?>
+            <?php echo self::getSession("name")?>
         </li>
         <li>
             <?php echo anchor("profile/changePictureView", '<span class="icon">&#9851</span>Change Picture');?>
