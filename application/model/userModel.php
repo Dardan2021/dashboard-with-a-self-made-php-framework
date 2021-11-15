@@ -52,8 +52,8 @@ class userModel extends Database
                         break;
 
                     case 'value':
-                        $data = json_decode(json_encode(self::singleData()),true);
-                        return $data;
+                        $datas = json_decode(json_encode(self::singleData()),true);
+                        return $datas;
 
                         break;
                 }
