@@ -38,7 +38,7 @@ class userModel extends Database
                 $queryArray[] = "$columns='$value'";
             }
 
-            $querySql = implode(",", $queryArray);
+            $querySql = implode("AND ", $queryArray);
             self::Query("SELECT * FROM " . "$tableName " . "WHERE " . "$querySql");
 
             if(isset($params['fetch']))
@@ -46,20 +46,21 @@ class userModel extends Database
                 switch($params['fetch'])
                 {
                     case 'array':
-
-                        return self::fetchData();
+                        $data = json_decode(json_encode(self::fetchData()),true);
+                        return $data;
 
                         break;
 
                     case 'value':
-
-                        return self::singleData();
+                        $datas = json_decode(json_encode(self::singleData()),true);
+                        return $datas;
 
                         break;
                 }
             }
-
-            return self::fetchData();
+            
+            $data = json_decode(json_encode(self::fetchData()),true);
+            return $data;
         }
 
         if(isset($params['join']))

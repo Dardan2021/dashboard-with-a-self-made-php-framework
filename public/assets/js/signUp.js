@@ -81,10 +81,10 @@ $(document).ready(function(){
                 var errorMsg = JSON.parse(errorMsg);
                 if($('#errorAuthenticationText').length === 0)
                 {
-                    $("#errorEmail").append("<p id='errorAuthentication'></p>");
+                    $("#errorAuthentication").append("<p id='errorAuthenticationText'></p>");
                     $("#errorAuthenticationText").append(errorMsg);
                 }
-                if(errorMsg.status=="success")
+                else if(errorMsg.status=="success")
                 {
                     location.href = "https://localhost/dashboard/profile";
                 }
