@@ -46,8 +46,8 @@ class userModel extends Database
                 switch($params['fetch'])
                 {
                     case 'array':
-
-                        return self::fetchData();
+                        $datas = json_decode(json_encode(self::fetchData()),true);
+                        return $datas;
 
                         break;
 
