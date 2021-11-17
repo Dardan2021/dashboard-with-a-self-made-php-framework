@@ -4,7 +4,6 @@
             <?php echo anchor("#", '<span class="profileFirst"><img src="'.BASE_URL.'assets/images/background.jpg" alt="" class="imgProfile"></span>');?>
         </li>
         <li>
-
             <?php echo "<a href=''><span class='icon .icon-users'>&#128100</span>".self::getSession("name")."</a>"?>
         </li>
         <li>
