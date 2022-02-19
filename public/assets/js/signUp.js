@@ -87,7 +87,7 @@ $(document).ready(function(){
                 }
                 else if(errorMsg.status=="success")
                 {
-                    location.href = "https://localhost/dashboard/profile";
+                    location.href = "https://localhost/integrateChat/profile";
                 }
             }
         })

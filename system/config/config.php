@@ -6,11 +6,11 @@ $database = array(
     'database' => 'userstable',
     'password' => '');
 
-$default = array('defaultController' => 'welcome',
+$default = array('defaultController' => 'accountController',
     'method' => 'index',
     'defaultParam' => [] );
 
-$settings = array('base_url' => 'https://localhost/dashboard/public/');
+$settings = array('base_url' => 'https://localhost/integrateChat/public/');
 
 
 

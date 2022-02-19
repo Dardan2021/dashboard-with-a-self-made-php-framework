@@ -3,7 +3,7 @@
     {
         if(!empty($cssPath))
         {
-            return "<link rel='stylesheet' href='/dashboard/public/".$cssPath."'>";
+            return "<link rel='stylesheet' href='/integrateChat/public/".$cssPath."'>";
         }
     }
 
@@ -11,7 +11,7 @@
     {
         if(!empty($jsPath))
         {
-            return "<script src='/dashboard/public/".$jsPath."'></script>";
+            return "<script src='/integrateChat/public/".$jsPath."'></script>";
         }
     }
 ?>
