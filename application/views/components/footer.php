@@ -3,3 +3,5 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
 <script src="https://localhost/integrateChat/public/assets/js/login.js"></script>
 <script src="https://localhost/integrateChat/public/assets/js/signUp.js"></script>
+<script src="https://localhost/integrateChat/public/assets/js/search.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

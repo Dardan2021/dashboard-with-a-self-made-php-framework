@@ -64,6 +64,13 @@ class ajaxController  extends myFramework
                 }
 
                 break;
+            case 'searchUser':
+                $values = json_decode($post['formData'], true);
+
+                $datas = userModel::fetchAllData('userstable', array('full_name' => $values['full_name']), array("fetch"=>'array'));
+
+                echo json_encode($datas);
+                break;
 
         }
 

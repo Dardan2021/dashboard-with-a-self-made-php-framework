@@ -5,7 +5,7 @@ class accountController extends myFramework
     public static function index()
     {
         echo "index method from controller";
-        $data['signupForm'] = "componentsqwq/signup";
+        $data['signupForm'] = "components/signup";
 
         self::view("index",  $data);
     }

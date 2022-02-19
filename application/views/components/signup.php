@@ -14,9 +14,6 @@
 </div>
 
 <form  class="form-container" onsubmit="return false"  id="signupForm" method="POST">
-    <div class="header-img">
-        <img src="<?php echo BASE_URL;?>assets/images/im1.png" class="profile-img"alt="">
-    </div>
 
     <h2 class="heading">Create user account</h2>
 

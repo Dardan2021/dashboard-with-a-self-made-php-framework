@@ -25,6 +25,14 @@ class profile extends myFramework
         self::view("dashboard",  $data);
     }
 
+    public static function searchView()
+    {
+        $data['layout'] = "components/searchView";
+        $data['title'] = "Search Friend";
+
+        self::view("dashboard",  $data);
+    }
+
     public static function table()
     {
         $data['layout'] = "components/table";

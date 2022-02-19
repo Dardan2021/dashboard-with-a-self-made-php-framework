@@ -7,6 +7,9 @@
             <?php echo "<a href=''><span class='icon .icon-users'>&#128100</span>".self::getSession("name")."</a>"?>
         </li>
         <li>
+            <?php echo anchor("profile/searchView", '<span class="icon">&#9851</span>Search Friend');?>
+        </li>
+        <li>
             <?php echo anchor("profile/changePictureView", '<span class="icon">&#9851</span>Change Picture');?>
         </li>
         <li>
