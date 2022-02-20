@@ -96,3 +96,86 @@ $(document).ready(function(){
 
 
 
+// $(document).ready(function(){
+//
+//     function objectifyForm(formArray) {
+//         //serialize data function
+//         var returnArray = {};
+//         for (var i = 0; i < formArray.length; i++){
+//             returnArray[formArray[i]['name']] = formArray[i]['value'];
+//         }
+//         return returnArray;
+//     }
+//
+//     // $( "#searchForm" ).submit(function(e) {
+//     //
+//     //     var str = $( "#searchForm" ).serializeArray();
+//     //     var newArray = objectifyForm(str);
+//     //     e.preventDefault();
+//     //     $.ajax({
+//     //         type:'POST',
+//     //         url:'ajax/ajaxController/ajax',
+//     //         data:
+//     //             {
+//     //                 formData: JSON.stringify(newArray),
+//     //                 ajaxCall: "searchUser"
+//     //             },
+//     //         success: function( tableValue )
+//     //         {
+//     //             var tableValue = JSON.parse(tableValue);
+//     //
+//     //             $(".number").remove();
+//     //
+//     //             $(".numberCount").remove();
+//     //             $(".results").append("<span class='number'>"+tableValue.length+"</span>");
+//     //             let resultCount= tableValue.length/2
+//     //             let count = Math.ceil(resultCount)
+//     //
+//     //             for(let i=0;i<count;i++)
+//     //             {
+//     //                 $('.fullName'+i).remove();
+//     //             }
+//     //             for(let i=0;i<count;i++)
+//     //             {
+//     //                 $(".button"+i)
+//     //                 if( $(".button"+i) != null)
+//     //                 {
+//     //                     $(".button"+i).remove();
+//     //                 }
+//     //
+//     //                 $("#main").append("<button class='button"+i+"'>"+i+"</button>");
+//     //
+//     //                 for(let j=0;j<2;j++)
+//     //                 {
+//     //                     if(tableValue[2*i+j].full_name != undefined && tableValue[2*i+j].full_name != null)
+//     //                     {
+//     //                         $("#email").append("<p class='fullName"+i+"'>"+tableValue[2*i+j].full_name+"</p>");
+//     //                     }
+//     //                     // if(i>0)
+//     //                     // {
+//     //                     //     $('.fullName'+i).addClass("none")
+//     //                     // }
+//     //                 }
+//     //             }
+//     //             // $(".count").append("<span class='numberCount'>"+count+"</span>");
+//     //             // $(".numberCount").addClass("none")
+//     //         }
+//     //     })
+//     // });
+//
+//     // let tmpCount = document.getElementById("count")
+//     // console.log(tmpCount.inne)
+//     //
+//     // $('.click-me').click(function (event) {
+//     //
+//     //     // Don't follow the link
+//     //     event.preventDefault();
+//     //
+//     //     // Log the clicked element in the console
+//     //     console.log(event.target);
+//     //
+//     // });
+//
+// });
+
+
