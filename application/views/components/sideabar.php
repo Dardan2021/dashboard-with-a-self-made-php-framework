@@ -19,6 +19,9 @@
             <?php echo anchor("profile", '<span class="icon">&#9852</span>Change Name');?>
         </li>
         <li>
+            <?php echo anchor("profile/chat", '<span class="icon">&#9852</span>Lets chat');?>
+        </li>
+        <li>
             <?php echo anchor("profile/table", '<span class="icon">&#9852</span>Table');?>
         </li>
     </ul>

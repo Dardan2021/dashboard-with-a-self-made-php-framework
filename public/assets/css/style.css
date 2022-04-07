@@ -485,7 +485,23 @@ nav ul li
 {
     display:none;
 }
-
+.chatContainer
+{
+    width:49%;
+    height:140px;
+    background-color:blue;
+    overflow: scroll;
+}
+.right-message
+{
+    width:50%;
+    background-color:blue;
+}
+.left-message
+{
+    width:50%;
+    background-color:red;
+}
 @media  (max-width: 765px) {
     .hember
     {

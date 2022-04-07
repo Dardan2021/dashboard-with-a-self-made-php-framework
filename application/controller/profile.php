@@ -39,5 +39,22 @@ class profile extends myFramework
         $data['title'] = "Table";
 
         self::view("dashboard",  $data);
+}
+
+    public static function viewProfile()
+    {
+        $data['layout'] = "components/viewProfile";
+        $data['title'] = "ViewProfile";
+        $data['name'] = $_GET["name"];
+        $data['id'] = $_GET["id"];
+        self::view("dashboard",  $data);
+    }
+
+    public static function chat()
+    {
+        $data['layout'] = "components/chat";
+        $data['title'] = "ViewProfile";
+        $data['name'] = $_GET["name"];
+        self::view("dashboard",  $data);
     }
 }

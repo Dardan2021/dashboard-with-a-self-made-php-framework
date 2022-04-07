@@ -13,7 +13,9 @@
 </nav>
 <div class="layout">
     <?php include "components/sideabar.php";?>
-    <?php myFramework::view($data['layout']); ?>
+    <?php
+
+    myFramework::view($data['layout'],$data); ?>
 </div>
 <?php include "components/footer.php" ;?>
 </body>

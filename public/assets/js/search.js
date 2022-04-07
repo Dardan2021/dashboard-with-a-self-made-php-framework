@@ -58,7 +58,8 @@ $(document).ready(function(){
 
                     for(let j=0;j<2;j++)
                     {
-                        $("#email").append("<p class='fullName fullName"+i+"'>"+tableValue[2*i+j].full_name+"</p>");
+                        $("#email").append("<p class='fullName fullName"+i+"' ><a href='viewProfile?name="+tableValue[2*i+j].full_name+"&id="+tableValue[2*i+j].id+" '>"+tableValue[2*i+j].full_name+"</a></p>");
+                        $("#email").append("<p class='fullName fullName"+i+"'>"+tableValue[2*i+j].email+"</p>");
                         if(i>0)
                         {
                             $('.fullName'+i).addClass("none")
@@ -69,6 +70,7 @@ $(document).ready(function(){
             }
         })
     });
+
 });
 
 
