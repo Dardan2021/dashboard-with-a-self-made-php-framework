@@ -35,10 +35,28 @@ class userModel extends Database
         {
             foreach ($filter as $columns => $value)
             {
-                $queryArray[] = "$columns='$value'";
+                if($columns=='IN')
+                {
+                    foreach ($value as $variable =>$keys)
+                    {
+                        foreach ($keys as $key )
+                        {
+                            $variableToput[]=$key;
+                        }
+                        $querySqlVariable = implode(",",  $variableToput);
+                        unset($variableToput);
+                        $queryArray[]="$variable IN ($querySqlVariable)";
+                    }
+
+                }
+                else
+                {
+                    $queryArray[] = "$columns='$value'";
+                }
             }
 
-            $querySql = implode("AND ", $queryArray);
+            $querySql = implode(" AND ", $queryArray);
+
             self::Query("SELECT * FROM " . "$tableName " . "WHERE " . "$querySql");
 
             if(isset($params['fetch']))

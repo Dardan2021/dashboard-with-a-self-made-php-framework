@@ -5,3 +5,4 @@
 <script src="https://localhost/integrateChat/public/assets/js/signUp.js"></script>
 <script src="https://localhost/integrateChat/public/assets/js/search.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://localhost/integrateChat/public/assets/js/message.js"></script>

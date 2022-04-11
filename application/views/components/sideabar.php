@@ -5,6 +5,7 @@
         </li>
         <li>
             <?php echo "<a href=''><span class='icon .icon-users'>&#128100</span>".self::getSession("name")."</a>"?>
+            <div id="id" style="display:none"><?php echo self::getSession("id")?></div>
         </li>
         <li>
             <?php echo anchor("profile/searchView", '<span class="icon">&#9851</span>Search Friend');?>

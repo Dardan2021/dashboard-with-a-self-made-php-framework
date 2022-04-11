@@ -1,34 +1,58 @@
-/*
+
+
 $(document).ready(function() {
+
     $("#messageChat").keypress(function(e){
-        if(e.keyCode==13){
-            var send_message=$("#textMessage").val();
+        if(e.keyCode==13) {
 
-            if(send_message.length!=""){
+            var send_message = $("#textMessage").val();
+            var userid = $("#id").text();
+            var useridsend = $("#idSend").text();
+            var scrolled = false;
 
-                $.ajax({
-                    type :'POST',
+            if(!scrolled){
+                var elem = document.getElementById('chatContainer');
+                elem.scrollTop =  elem.scrollHeight - elem.clientHeight;
+                console.log(elem.scrollTop);
+            }
+
+
+            $("#chatContainer").on('scroll', function(){
+                scrolled=true;
+            });
+             if(send_message!="")
+             {
+                 $.ajax({
+                     type :'POST',
                     url:'ajax/ajaxController/ajax',
-                    data:
-                        {
-                            send_message: send_message,
-                            ajaxCall: "sendMessage"
-                        },
-                    dataType: 'JSON',
-                    success: function(feedback){
-                        if(feedback.status=="success"){
-                            $("#messageChat").trigger("reset");
-                            show_message();
-                        }
+                     data:
+                         {
+                             send_message: send_message,
+                             userid: userid,
+                             useridsend:useridsend,
+                             ajaxCall: "sendMessage"
+                         },
+                     dataType: 'JSON',
+                     success: function(feedback){
+                         if(feedback.status=="success"){
+                             $("#messageChat").trigger("reset");
+                             show_message();
 
-                    }
-                } )
-
-            }
-            else  {
-                alert("su be");}
-            }
+                         }
+                     }
+                 } )
+             }
+             else
+             {
+                 return false;
+             }
+        }
     })
+    setInterval(function(){
+        show_message();
+        },3000);
+
+
     function show_message(){
         var msg=true;
         $.ajax({
@@ -40,11 +64,33 @@ $(document).ready(function() {
                     ajaxCall: "showMessage"
                 },
             success: function(feedback){
-                $(".messages").html(feedback);
+                $(".chatContainer").html(feedback);
             }
         })
     }
+    show_message();
 });
 
 
-*/
+window.addEventListener('mouseover', respondHover);
+function respondHover()
+{
+
+    var scrolled = false;
+
+    if(!scrolled){
+        var elem = document.getElementById('chatContainer');
+        elem.scrollTop =  elem.scrollHeight - elem.clientHeight;
+        console.log(elem.scrollTop);
+    }
+
+
+    $("#chatContainer").on('scroll', function(){
+        scrolled=true;
+    });
+}
+function RespondClick()
+{
+    window.removeEventListener("mouseover", respondHover);
+}
+RespondClick() ;

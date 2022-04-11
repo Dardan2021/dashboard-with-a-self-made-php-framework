@@ -71,9 +71,29 @@ class ajaxController  extends myFramework
 
                 echo json_encode($datas);
                 break;
+            case 'sendMessage':
 
+                $values['user_id'] = $post['userid'];
+                $values['user_id_sent'] = $post['useridsend'];
+                $values['message'] = $post['send_message'];
+
+
+                if(userModel::insertData("messages", $values))
+                {
+                    echo json_encode(['status'=>'success']);
+                }
+
+                break;
+            case 'showMessage':
+                $datas = userModel::fetchAllData('messages', array('IN'=>ARRAY('user_id'=>array('1','2'),'user_id_sent'=>array('1','2'))),
+                    array("fetch"=>'array'));
+              foreach($datas as $data)
+              {
+                  echo '<p style="padding-bottom:50px">'.$data['message'].'</p><br>';
+
+              }
+                break;
         }
-
 
     }
 }
