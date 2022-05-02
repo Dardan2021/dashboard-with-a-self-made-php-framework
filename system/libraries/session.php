@@ -69,4 +69,6 @@ trait session
     {
         session_destroy();
     }
+
+
 }

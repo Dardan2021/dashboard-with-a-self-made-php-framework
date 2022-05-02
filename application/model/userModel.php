@@ -132,7 +132,7 @@ class userModel extends Database
                 $queryArray[] = "$columns='$value'";
             }
 
-            $querySql = implode(",", $queryArray);
+            $querySql = implode(" AND ", $queryArray);
 
             foreach ($updateValues as $columns => $value)
             {
@@ -141,14 +141,16 @@ class userModel extends Database
 
             $querySqlUpdateValues = implode(",", $queryArrayUpdateValues);
 
+
+
             if(self::Query("UPDATE $tableName SET $querySqlUpdateValues WHERE $querySql"))
             {
-                echo "Data u ndryshua";
+                return true;
             }
         }
         else
         {
-            return 0;
+            return false;
         }
     }
 

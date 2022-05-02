@@ -23,4 +23,5 @@ class accountController extends myFramework
         self::destroySession();
         self::login();
     }
+
 }

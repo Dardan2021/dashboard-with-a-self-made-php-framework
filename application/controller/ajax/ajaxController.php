@@ -9,7 +9,18 @@ class ajaxController  extends myFramework
 
         self::model("userModel");
     }
-
+    public static function files()
+    {
+        if ( 0 < $_FILES['send_file']['error'] ) {
+            echo 'Error: ' . $_FILES['send_file']['error'] . '<br>';
+        }
+        else
+        {
+            var_dump($_FILES['send_file']['name']);
+            move_uploaded_file($_FILES['send_file']['tmp_name'], 'C:/xampp/htdocs/integrateChat/public/profile/uploadFile/' . $_FILES['send_file']['name']);
+            echo 'success';
+        }
+    }
     public static function ajax()
     {
         $post = $_POST;
@@ -76,7 +87,7 @@ class ajaxController  extends myFramework
                 $values['user_id'] = $post['userid'];
                 $values['user_id_sent'] = $post['useridsend'];
                 $values['message'] = $post['send_message'];
-
+                $values['msg_type'] = 'text';
 
                 if(userModel::insertData("messages", $values))
                 {
@@ -85,13 +96,80 @@ class ajaxController  extends myFramework
 
                 break;
             case 'showMessage':
-                $datas = userModel::fetchAllData('messages', array('IN'=>ARRAY('user_id'=>array('1','2'),'user_id_sent'=>array('1','2'))),
+                $values['user_id'] = $post['userid'];
+                $values['user_id_sent'] = $post['useridsend'];
+                $datas = userModel::fetchAllData('messages', array('IN'=>ARRAY('user_id'=>array($values['user_id'], $values['user_id_sent']),'user_id_sent'=>array($values['user_id'], $values['user_id_sent']))),
                     array("fetch"=>'array'));
+                self::showMessages(1,1,1);
+
               foreach($datas as $data)
               {
-                  echo '<p style="padding-bottom:50px">'.$data['message'].'</p><br>';
+                  if($data['user_id']==$values['user_id'])
+                  {
+                      echo self::showMessages($data['message'],$data['msg_type'],"leftMessageText");
+
+                  }
+                  else
+                  {
+                      echo self::showMessages($data['message'],$data['msg_type'],"rightMessageText");
+                  }
 
               }
+                break;
+            case 'addFriendship':
+                $values['status'] = "true";
+                $firstid = $post['userid'];
+                $secondid =  trim($post['useridsend']," ");
+                $check = userModel::fetchAllData("friendship", array('friend_id'=>$firstid,'friend_with'=>$secondid), array("fetch"=>'value'));
+                if(!empty($check))
+                {
+                    userModel::updateData("friendship", array('friend_id'=>$firstid,'friend_with'=>$secondid), $values);
+                    echo json_encode(['status'=>'success']);
+                }
+                else
+                {
+                    userModel::updateData("friendship", array('friend_id'=>$secondid,'friend_with'=>$firstid), $values);
+                    echo json_encode(['status'=>'success']);
+                }
+
+                break;
+            case 'removeFriendship':
+                $values['status'] = "false";
+                $firstid = $post['userid'];
+                $secondid =  trim($post['useridsend']," ");
+                $check = userModel::fetchAllData("friendship", array('friend_id'=>$firstid,'friend_with'=>$secondid), array("fetch"=>'value'));
+
+                if(!empty($check))
+                {
+                    userModel::updateData("friendship", array('friend_id'=>$firstid,'friend_with'=>$secondid), $values);
+                    echo json_encode(['status'=>'success']);
+                }
+                else
+                {
+                    userModel::updateData("friendship", array('friend_id'=>$secondid,'friend_with'=>$firstid), $values);
+                    echo json_encode(['status'=>'success']);
+                }
+                break;
+            case 'sendfile':
+
+                $values['user_id'] = $post['userid'];
+                $values['user_id_sent'] = $post['useridsend'];
+                $values['msg_type'] = $post['type'];
+                $values['message'] = $post['fileName'];
+                $extensions = array("jpg","JPG","jpeg","png","pdf","zip","xlsx","docx","csv");
+
+
+                if(!in_array($values['msg_type'],$extensions))
+                {
+                    echo "error";
+                }
+                else
+                {
+                    if(userModel::insertData("messages", $values))
+                    {
+                        echo json_encode(['status'=>'success']);
+                    }
+                }
                 break;
         }
 
