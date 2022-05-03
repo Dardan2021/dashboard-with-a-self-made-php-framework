@@ -1,11 +1,12 @@
 $(document).ready(function() {
+    function updateScroll(){
+        var element = document.getElementById("chatContainer");
+        element.scrollTop = element.scrollHeight;
+    }
     var userid = $("#id").text();
     var useridsend = $("#idSend").text();
     $("#messageChat").keypress(function(e){
-        function updateScroll(){
-            var element = document.getElementById("chatContainer");
-            element.scrollTop = element.scrollHeight;
-        }
+
         setTimeout(updateScroll, 100)
         if(e.keyCode==13) {
 
@@ -46,10 +47,7 @@ $(document).ready(function() {
         {
             myStop();
         }
-
     })
-
-
 
     function show_message(){
         var msg=true;
@@ -70,6 +68,9 @@ $(document).ready(function() {
         })
     }
     show_message();
+    // setInterval(function(){
+    //     show_message();
+    // },1000);
 
     $("#addFriend").click(function(){
         $.ajax({
@@ -113,66 +114,6 @@ $(document).ready(function() {
             }
         })
     });
-    $("#upload-files").change(function(){
-        var file_name=$("#upload-files").val();
-        if(file_name.length !=""){
-            $.ajax({
-                type: 'POST',
-                url:'ajax/ajaxController/files',
-                data: new FormData($("#messageChat")[0]),
-                contentType: false,
-                processData: false,
-                success:function(feedback){
-                    if(feedback == "success")
-                    {
-                        alert("u vendos");
-                    }
-                }
-            })
-        }
-    })
-    $("#upload-files").change(function(){
-        var scrolled = false;
-
-        if(!scrolled){
-            console.log("haleluja")
-            var elem = document.getElementById('chatContainer');
-            elem.scrollTop =  300;
-            console.log('scroll top',elem.scrollTop);
-        }
-
-
-        $("#chatContainer").on('scroll', function(){
-            scrolled=true;
-        });
-        let file_name=$("#upload-files").val();
-        let type = file_name.split('.').pop();
-        var filename = $('#upload-files').val().replace(/C:\\fakepath\\/i, '')
-        alert(filename);
-        if(file_name.length !=""){
-            $.ajax({
-                dataType: 'JSON',
-                type: 'POST',
-                url:'ajax/ajaxController/ajax',
-                data:
-                    {
-                        fileName:filename,
-                        userid: userid,
-                        useridsend:useridsend,
-                        ajaxCall: "sendfile",
-                        type: type
-                    },
-
-                success:function(feedback){
-                    if(feedback.status=="success")
-                    {
-                        alert('u vendos');
-                    }
-                }
-            })
-        }
-    })
-
 });
 window.addEventListener('load', (event) => {
     function updateScroll(){

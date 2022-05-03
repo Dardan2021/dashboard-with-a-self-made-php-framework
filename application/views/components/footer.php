@@ -5,6 +5,6 @@
 <script src="https://localhost/integrateChat/public/assets/js/search.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://localhost/integrateChat/public/assets/js/message.js"></script>
-
-<script>
+<script src="https://localhost/integrateChat/public/assets/js/extraFeature.js"></script>
+<script
 </script>
