@@ -1,0 +1,11 @@
+Beschrijving;Formula;SourceQty;UOM;UnitPerUOM;Waste;Consumption;Quantity;UnitCost;BaseCost;CostType;GrossTotal
+Alternatieven;1;1;;;1;1;1;0;0;;0
+ENGINEERING;100;100;uur;-;1;1;100;0;8580;;10038.6
+Engineering;100;100;uur;-;1;1;100;0;8580;;10038.6
+BIM Clashsessies (incl. reistijd);16;16;uur;-;1;1.1;17.6;78;1372.8;ENG-A;1606.176
+Afstemming;68;68;uur;-;1;1.1;74.8;78;5834.4;ENG-A;6826.248
+Breeam projectadministratie bijhouden;16;16;uur;-;1;1.1;17.6;78;1372.8;ENG-A;1606.176
+MAATVOERING;1;1;pst;-;1;1;1;0;7097.2;WDD;8303.724
+Maatvoering balken en betonwerk;60;60;uur;-;1;1.1;66;85;5610;;6563.7
+Inmeten palen ivm te verwachten afwijkingen;PAAL.Count+Paal.Count;676;st;-;1;1.1;743.6;2;1487.2;;1740.024
+

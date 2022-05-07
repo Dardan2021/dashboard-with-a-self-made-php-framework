@@ -2,7 +2,7 @@
 
 class myFramework
 {
-  use formValidation, fileUpload, session;
+  use formValidation, fileUpload, session, additionalFunction;
 
   public function __construct()
   {

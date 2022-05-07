@@ -3,32 +3,34 @@
 class database
 {
     use session;
-    private $host = HOST;
+    public  static $host = HOST;
 
-    private $username = USERNAME;
+    public  static $username = USERNAME;
 
-    private $database = DATABASE;
+    public  static $database = DATABASE;
 
-    private $password = PASSWORD;
+    public  static $password = PASSWORD;
 
     public static $db;
 
     public static $Query;
 
-    public function __construct()
+   /* public function __construct()
     {
         try
         {
-            $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->database;
+            $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->database ."";
             self::$db = new PDO($dsn, $this->username, $this->password);
         } catch (PDOException $e)
         {
             echo "Database Connection error: " . $e->getMessage();
         }
-    }
+    }*/
 
     public static function Query($query, $options = array())
     {
+        $dsn = "mysql:host=" . self::$host . ";dbname=" . self::$database ."";
+        self::$db = new PDO($dsn, self::$username,self::$password);
         self::$Query = self::$db->prepare($query);
 
         if(empty($options))
@@ -81,4 +83,5 @@ class database
             return $_SESSION[$name];
         }
     }
+
 }

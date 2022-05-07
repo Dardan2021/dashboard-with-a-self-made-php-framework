@@ -25,11 +25,36 @@ class profile extends myFramework
         self::view("dashboard",  $data);
     }
 
+    public static function searchView()
+    {
+        $data['layout'] = "components/searchView";
+        $data['title'] = "Search Friend";
+
+        self::view("dashboard",  $data);
+    }
+
     public static function table()
     {
         $data['layout'] = "components/table";
         $data['title'] = "Table";
 
+        self::view("dashboard",  $data);
+}
+
+    public static function viewProfile()
+    {
+        $data['layout'] = "components/viewProfile";
+        $data['title'] = "ViewProfile";
+        $data['name'] = $_GET["name"];
+        $data['id'] = $_GET["id"];
+        self::view("dashboard",  $data);
+    }
+
+    public static function chat()
+    {
+        $data['layout'] = "components/chat";
+        $data['title'] = "ViewProfile";
+        $data['name'] = $_GET["name"];
         self::view("dashboard",  $data);
     }
 }

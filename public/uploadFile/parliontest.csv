@@ -1,0 +1,8 @@
+Code;Level;Beschrijving;Formula;SourceQty;UOM;UnitPerUOM;Waste;Consumption;Quantity;UnitCost;BaseCost;CostType
+#1000;1;Alternatieven;1;1;;;1;1;1;0;0;
+01;1;ENGINEERING;100;100;uur;-;1;1;100;0;8580;
+0101;2;Engineering;100;100;uur;-;1;1;100;0;8580;
+010101;3;BIM Clashsessies (incl. reistijd);16;16;uur;-;1;1.1;17.6;78;1372.8;ENG-A
+010102;3;Afstemming;68;68;uur;-;1;1.1;74.8;78;5834.4;ENG-A
+010103;3;Breeam projectadministratie bijhouden;16;16;uur;-;1;1.1;17.6;78;1372.8;ENG-A
+02;1;MAATVOERING;1;1;pst;-;1;1;1;0;7097.2;WDD

@@ -35,25 +35,78 @@ class userModel extends Database
         {
             foreach ($filter as $columns => $value)
             {
-                $queryArray[] = "$columns='$value'";
+                if($columns=='IN')
+                {
+                    foreach ($value as $variable =>$keys)
+                    {
+                        foreach ($keys as $key )
+                        {
+                            $variableToput[]=$key;
+                        }
+                        $querySqlVariable = implode(",",  $variableToput);
+                        unset($variableToput);
+                        $queryArray[]="$variable IN ($querySqlVariable)";
+                    }
+
+                }
+                else
+                if($columns == 'like')
+                {
+                   foreach ($value as $variable =>$keys)
+                    {
+                        $queryArray[]="$variable like '%$keys%'";
+                    }
+
+                }
+                else
+                    if($columns == 'or')
+                    {
+                        foreach ($value as $variable =>$keys)
+                        {
+                            $queryArray[]="$variable like '%$keys%'";
+                        }
+                    }
+                else
+                {
+                    $queryArray[] = "$columns='$value'";
+                }
             }
 
-            $querySql = implode("AND ", $queryArray);
+            $querySql = implode(" AND ", $queryArray);
+
             self::Query("SELECT * FROM " . "$tableName " . "WHERE " . "$querySql");
+
 
             if(isset($params['fetch']))
             {
                 switch($params['fetch'])
                 {
                     case 'array':
+
                         $data = json_decode(json_encode(self::fetchData()),true);
-                        return $data;
+                        if(!empty($data))
+                        {
+                            return $data;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
 
                         break;
 
                     case 'value':
-                        $datas = json_decode(json_encode(self::singleData()),true);
-                        return $datas;
+                        $data = json_decode(json_encode(self::singleData()),true);
+
+                        if(!empty($data))
+                        {
+                            return $data;
+                        }
+                        else
+                        {
+                            return null;
+                        }
 
                         break;
                 }
@@ -114,7 +167,7 @@ class userModel extends Database
                 $queryArray[] = "$columns='$value'";
             }
 
-            $querySql = implode(",", $queryArray);
+            $querySql = implode(" AND ", $queryArray);
 
             foreach ($updateValues as $columns => $value)
             {
@@ -123,14 +176,16 @@ class userModel extends Database
 
             $querySqlUpdateValues = implode(",", $queryArrayUpdateValues);
 
+
+
             if(self::Query("UPDATE $tableName SET $querySqlUpdateValues WHERE $querySql"))
             {
-                echo "Data u ndryshua";
+                return true;
             }
         }
         else
         {
-            return 0;
+            return false;
         }
     }
 
