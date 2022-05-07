@@ -3,12 +3,21 @@ trait additionalFunction
 {
     public static function getStatusFriendship($firstid, $secondid)
     {
-        $datas = userModel::fetchAllData('friendship', array('friend_id' => $firstid,'friend_with'=>$secondid),array("fetch"=>'value'));
-        if(empty($datas))
+        $datasFirst = userModel::fetchAllData('friendship', array('friend_id' => $firstid,'friend_with'=>$secondid),array("fetch"=>'value'));
+        $datasSecond = userModel::fetchAllData('friendship', array('friend_id' => $secondid,'friend_with'=>$firstid),array("fetch"=>'value'));
+
+        if(empty($datasFirst) && empty($datasSecond))
         {
-            $datas = userModel::fetchAllData('friendship', array('friend_id' => $secondid,'friend_with'=>$firstid),array("fetch"=>'value'));
+            return 'false';
         }
-        return $datas['status'];
+        else if(!empty($datasFirst))
+        {
+            return $datasFirst['status'];
+        }
+        else if(!empty($datasSecond))
+        {
+            return $datasSecond['status'];
+        }
     }
 
     public static function  showMessages($message, $type ,$position)

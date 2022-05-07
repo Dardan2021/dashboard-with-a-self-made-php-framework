@@ -8,7 +8,14 @@
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
     <title>HTML 5 Boilerplate</title>
+    <?php
+    if(empty(self::getSession("id")))
+    {
+        self::setSession("security","ju duhet te logoni ne fillim");
+        header("location:https://localhost/integrateChat/public");
+    }
 
+    ?>
     <?php include "components/header.php" ;?>
 <body>
     <nav style="height:10%;width:100%;">

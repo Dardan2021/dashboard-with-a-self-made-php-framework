@@ -573,6 +573,19 @@ html,body
     text-decoration:none;
     font-weight:300;
 }
+.flash{
+    position:fixed;
+    top:20%;
+    left:40%;
+    width:40rem;
+    height:auto;
+    background-color:#e4e7ea;
+    padding:1.5rem;
+    color:green;
+    justify-content:space-between;
+    display:flex;
+}
+
 @media  (max-width: 765px) {
     .hember
     {

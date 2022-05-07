@@ -5,7 +5,7 @@
             <?php echo anchor("#", '<span class="profileFirst"><img src="'.$filename.'" alt="" class="imgProfile"></span>');?>
         </li>
         <li>
-            <?php echo "<a   href=''><span class='icon .icon-users'>&#128100</span><span id='profileName'>".self::getName(self::getSession("id"))."</span></a>"?>
+            <?php echo "<a   href=''><span class='icon .icon-users'>&#128100</span><span id='profileName'>".self::getName(self::getSession("id"))."</span> </a>"?>
             <div id="id" style="display:none"><?php echo self::getSession("id")?> </div>
         </li>
         <li>

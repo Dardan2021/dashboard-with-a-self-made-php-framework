@@ -61,7 +61,14 @@ trait session
     {
         if(!empty($name))
         {
-            return $_SESSION[$name];
+            if(isset($_SESSION[$name]))
+            {
+                return $_SESSION[$name];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 

@@ -50,6 +50,23 @@ class userModel extends Database
 
                 }
                 else
+                if($columns == 'like')
+                {
+                   foreach ($value as $variable =>$keys)
+                    {
+                        $queryArray[]="$variable like '%$keys%'";
+                    }
+
+                }
+                else
+                    if($columns == 'or')
+                    {
+                        foreach ($value as $variable =>$keys)
+                        {
+                            $queryArray[]="$variable like '%$keys%'";
+                        }
+                    }
+                else
                 {
                     $queryArray[] = "$columns='$value'";
                 }
@@ -59,19 +76,37 @@ class userModel extends Database
 
             self::Query("SELECT * FROM " . "$tableName " . "WHERE " . "$querySql");
 
+
             if(isset($params['fetch']))
             {
                 switch($params['fetch'])
                 {
                     case 'array':
+
                         $data = json_decode(json_encode(self::fetchData()),true);
-                        return $data;
+                        if(!empty($data))
+                        {
+                            return $data;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
 
                         break;
 
                     case 'value':
-                        $datas = json_decode(json_encode(self::singleData()),true);
-                        return $datas;
+                        $data = json_decode(json_encode(self::singleData()),true);
+
+                        if(!empty($data))
+                        {
+                            return $data;
+                        }
+                        else
+                        {
+                            return null;
+                        }
 
                         break;
                 }

@@ -6,6 +6,9 @@
             <h1 id="idSend"> <?php echo $data['id']?></h1>
         </div>
         <?php
+        if(self::getSession("id") != $data['id']):
+        ?>
+        <?php
             $status = self::getStatusFriendship(self::getSession("id"),$data['id']);
 
             if($status == "true")
@@ -17,8 +20,14 @@
                 echo '<button type="submit" id="addFriend" class="btn btn-primary">Shto si shok <i class="fa fa-plus"></i> </button>';
             }
         ?>
+        <?php
+        endif;
+        ?>
     </div>
 </div>
+<?php
+    if(self::getSession("id") != $data['id']):
+?>
 <div id="chatContent" class="chatContent">
     <div class="chatContainer"  id="chatContainer"></div>
     <div></div>
@@ -27,4 +36,7 @@
         <input type="file" class="form-control textMessage files-upload" id="upload-files" name="send_file">
         <input type="hidden" value="<?php echo $data['id']?>" name="userid">
     </form>
+<?php
+endif;
+?>
 </div>

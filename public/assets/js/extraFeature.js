@@ -147,4 +147,15 @@ $(document).ready(function() {
             }
         })
     })
+
+    $(".remove").click(function(){
+        $("#flashi").hide();
+    });
+    setTimeout(function()  {
+        $("#flashi").fadeOut("slow");
+    }, 3000);
+
+
+
+
 });
