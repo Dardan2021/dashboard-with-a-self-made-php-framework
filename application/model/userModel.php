@@ -29,7 +29,7 @@ class userModel extends Database
         return self::countData($tableName);
     }
 
-    public static function fetchAllData($tableName, $filter = array(), $params = array())
+    public static function fetchAllData($tableName, $filter = array(), $params = array(), $col=null)
     {
         if(!empty($filter) && !isset($params['join']))
         {
@@ -74,7 +74,16 @@ class userModel extends Database
 
             $querySql = implode(" AND ", $queryArray);
 
-            self::Query("SELECT * FROM " . "$tableName " . "WHERE " . "$querySql");
+            if(empty($col))
+            {
+                $character = "*";
+            }
+            else
+            {
+                $character = $col;
+            }
+
+            self::Query("SELECT $character FROM " . "$tableName " . "WHERE " . "$querySql");
 
 
             if(isset($params['fetch']))
@@ -97,28 +106,43 @@ class userModel extends Database
                         break;
 
                     case 'value':
-                        $data = json_decode(json_encode(self::singleData()),true);
 
-                        if(!empty($data))
+                        $data = json_decode(json_encode(self::singleData()),true);
+                        if(empty($col))
                         {
-                            return $data;
+                            if(!empty($data))
+                            {
+                                return $data;
+                            }
+                            else
+                            {
+                                return null;
+                            }
                         }
                         else
                         {
-                            return null;
+                            if(!empty($data))
+                            {
+                                return $data[$col];
+                            }
+                            else
+                            {
+                                return null;
+                            }
                         }
-
                         break;
                 }
             }
-            
+
             $data = json_decode(json_encode(self::fetchData()),true);
             return $data;
         }
 
         if(isset($params['join']))
         {
+
             $querySqlJoin = array();
+
             for ($i = 0; $i < count($params['join']); $i++)
             {
                 $querySqlJoin[] = "INNER JOIN " . $params['join'][$i]['table'] . " ON $tableName.". $params['join'][$i]['key']. " = ".$params['join'][$i]['table'].".".$params['join'][$i]['foreignKey'];

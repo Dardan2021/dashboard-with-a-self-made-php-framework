@@ -47,6 +47,8 @@ class profile extends myFramework
         $data['title'] = "ViewProfile";
         $data['name'] = $_GET["name"];
         $data['id'] = $_GET["id"];
+        $data['imgSrc'] = self::getpictureFileName($data['id']);
+
         self::view("dashboard",  $data);
     }
 

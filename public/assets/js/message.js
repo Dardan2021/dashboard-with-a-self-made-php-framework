@@ -1,8 +1,9 @@
+function updateScroll(){
+    var element = document.getElementById("chatContainer");
+    element.scrollTop = element.scrollHeight;
+}
 $(document).ready(function() {
-    function updateScroll(){
-        var element = document.getElementById("chatContainer");
-        element.scrollTop = element.scrollHeight;
-    }
+
     var userid = $("#id").text();
     var useridsend = $("#idSend").text();
     $("#messageChat").keypress(function(e){
@@ -29,17 +30,16 @@ $(document).ready(function() {
                          },
                      dataType: 'JSON',
                      success: function(feedback){
-                         if(feedback.status=="success"){
+                         if(feedback.status=="success")
+                         {
                              $("#messageChat").trigger("reset");
                              show_message();
-
                          }
                      }
                  } )
              }
              else
              {
-
                  return false;
              }
         }
@@ -53,6 +53,8 @@ $(document).ready(function() {
         var msg=true;
         var userid = $("#id").text();
         var useridsend = $("#idSend").text();
+        var element1 = document.getElementById("chatContainer");
+        var element1Height = element1.scrollHeight;
         $.ajax({
             type:'POST',
             url:'ajax/ajaxController/ajax',
@@ -62,15 +64,21 @@ $(document).ready(function() {
                     send_message: msg,
                     ajaxCall: "showMessage"
                 },
-            success: function(feedback){
+            success: function(feedback) {
                 $(".chatContainer").html(feedback);
+                var element2 = document.getElementById("chatContainer");
+                var element2Height = element2.scrollHeight;
+                if (element1Height != element2Height)
+                {
+                    setTimeout(updateScroll, 100)
+                }
             }
         })
     }
-    show_message();
+    // show_message();
     // setInterval(function(){
-    //     show_message();
-    // },1000);
+    //      show_message();
+    //  },100);
 
     $("#addFriend").click(function(){
         $.ajax({
@@ -114,11 +122,8 @@ $(document).ready(function() {
             }
         })
     });
+
 });
 window.addEventListener('load', (event) => {
-    function updateScroll(){
-        var element = document.getElementById("chatContainer");
-        element.scrollTop = element.scrollHeight;
-    }
     setTimeout(updateScroll, 100)
 });

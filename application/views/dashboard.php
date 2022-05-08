@@ -22,10 +22,8 @@
        <?php include "components/nav.php" ;?>
     </nav>
     <section class="layout" style="height:90%;width:100%;" >
-   <?php include "components/sideabar.php";?>
-    <?php
-
-        myFramework::view($data['layout'],$data); ?>
+       <?php include "components/sideabar.php";?>
+        <?php myFramework::view($data['layout'],$data); ?>
     </section>
     <?php include "components/footer.php" ;?>
 </body>

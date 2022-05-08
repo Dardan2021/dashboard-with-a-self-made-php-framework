@@ -65,11 +65,16 @@ class ajaxController  extends myFramework
                 break;
 
             case 'searchUser':
-                $values = json_decode($post['formData'], true);
 
+                $values = json_decode($post['formData'], true);
                 $datas = userModel::fetchAllData('users', array('like' => array('full_name'=>$values['full_name'])), array("fetch"=>'array'));
 
-                echo json_encode($datas);
+                foreach($datas as $data)
+                {
+                    $imgSrc[] =  userModel::fetchAllData('profilePicture', array('id'=>$data['id']), array("fetch"=>'value'),'profile_picture_filename');
+                }
+
+                echo json_encode(['datas' =>$datas, 'imgSrc'=>$imgSrc]);
                 break;
 
             case 'sendMessage':
@@ -91,17 +96,22 @@ class ajaxController  extends myFramework
                 $values['user_id'] = $post['userid'];
                 $values['user_id_sent'] = $post['useridsend'];
                 $datas = userModel::fetchAllData('messages', array('IN'=>ARRAY('user_id'=>array($values['user_id'], $values['user_id_sent']),'user_id_sent'=>array($values['user_id'], $values['user_id_sent']))), array("fetch"=>'array'));
-                foreach($datas as $data)
+
+                if(!empty($datas))
                 {
-                   if($data['user_id'] == $values['user_id'])
-                   {
-                      echo self::showMessages($data['message'],$data['msg_type'],"leftMessageText");
-                   }
-                   else
-                   {
-                      echo self::showMessages($data['message'],$data['msg_type'],"rightMessageText");
-                   }
+                    foreach($datas as $data)
+                    {
+                        if($data['user_id'] == $values['user_id'])
+                        {
+                            echo self::showMessages($data['message'],$data['msg_type'],"leftMessageText");
+                        }
+                        else
+                        {
+                            echo self::showMessages($data['message'],$data['msg_type'],"rightMessageText");
+                        }
+                    }
                 }
+
                 break;
 
             case 'addFriendship':
@@ -220,6 +230,7 @@ class ajaxController  extends myFramework
                 }
 
                 break;
+
             case 'changeName':
 
                 $id = $post['userid'];
@@ -231,6 +242,44 @@ class ajaxController  extends myFramework
                 }
 
                 break;
-            }
+
+            case 'sendCommentStatus':
+
+                $values['id_creator'] = $post['userid'];
+                $values['id_commentor'] = $post['useridsend'];
+                $values['text_comment'] = $post['comment'];
+                $values['type'] = 'status';
+                if(userModel::insertData("comments", $values))
+                {
+                   echo json_encode(['status'=>'success']);
+                }
+
+                break;
+
+            case 'showCommentStatus':
+
+                $values['user_id'] = $post['userid'];
+                $values['user_id_sent'] = $post['useridsend'];
+                $datas = userModel::fetchAllData('comments', array('id_commentor'=>$values['user_id_sent']), array(
+                    'join'=> array(
+                        array(
+                            'table'=>'users',
+                            'key'=>'id_commentor',
+                            'foreignKey' => 'id'
+                        )
+                    )
+                ));
+                if(!empty($datas))
+                {
+                    foreach($datas as $data)
+                    {
+                        echo self::showCommentStatus($data['text_comment'],$data['type'],$data['id_creator']);
+                    }
+                }
+
+                break;
+
+        }
+
         }
 }

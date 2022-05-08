@@ -64,6 +64,10 @@ trait additionalFunction
         {
             return 0;
         }
+    }
 
+    public static function showCommentStatus($commentStatus, $type, $id)
+    {
+       return '<div><div style="display:flex"><img  width="20px" height="20px" src="'.self::getpictureFileName($id).'" alt=""> <h4> '.self::getName($id).'</h4></div><p>'.$commentStatus.'</p></div>';
     }
 }

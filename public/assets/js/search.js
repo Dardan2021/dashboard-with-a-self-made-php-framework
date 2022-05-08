@@ -26,11 +26,16 @@ $(document).ready(function(){
             success: function( tableValue )
             {
 
-                var tableValue = JSON.parse(tableValue);
+                var tableValues = JSON.parse(tableValue);
+                var tableValue = tableValues.datas;
+                console.log(tableValue);
+                var imgSrc = tableValues.imgSrc;
+                console.log(imgSrc);
+
                 $(".number").remove();
                 $(".results").append("<span class='number'>"+tableValue.length+"</span>");
                 $(".fullName").remove();
-
+                $("img .fullName").remove();
                 $(".button").remove();
                 let resultCount= tableValue.length/2
                 let count = Math.ceil(resultCount)
@@ -58,8 +63,17 @@ $(document).ready(function(){
 
                     for(let j=0;j<2;j++)
                     {
-                        $("#email").append("<p class='fullName fullName"+i+"' ><a href='viewProfile?name="+tableValue[2*i+j].full_name+"&id="+tableValue[2*i+j].id+" '>"+tableValue[2*i+j].full_name+"</a></p>");
-                        $("#email").append("<p class='fullName fullName"+i+"'>"+tableValue[2*i+j].email+"</p>");
+                        if(tableValue[2*i+j].full_name !='undefined')
+                        {
+                            $("#email").append("<img src='https://localhost/integrateChat/public/uploadFile/"+imgSrc[2*i+j]+"' class='fullName"+i+" fullName profileSearchImage'>");
+                            $("#email").append("<p class='fullName fullName"+i+"' ><a href='viewProfile?name="+tableValue[2*i+j].full_name+"&id="+tableValue[2*i+j].id+" '>"+tableValue[2*i+j].full_name+"</a></p>");
+                            $("#email").append("<p class='fullName fullName"+i+"'>"+tableValue[2*i+j].email+"</p>");
+                        }
+                        else
+                        {
+                            console.log('none')
+                        }
+
                         if(i>0)
                         {
                             $('.fullName'+i).addClass("none")
