@@ -125,6 +125,7 @@ $(document).ready(function() {
         })
     })
     $("#changeNameForm").submit(function(e){
+        console.log("hello")
         e.preventDefault()
         var newName=$("#newName").val();
 

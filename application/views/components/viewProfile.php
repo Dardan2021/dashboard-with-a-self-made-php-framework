@@ -47,7 +47,7 @@
 <?php
     if(self::getSession("id") != $data['id']):
 ?>
-<div id="chatContent" class="chatContent">
+<div id="chatContent" style="display:none" class="chatContent">
     <div class="chatContainer"  id="chatContainer"></div>
     <div></div>
     <form id="messageChat" class="textMessage" action="">

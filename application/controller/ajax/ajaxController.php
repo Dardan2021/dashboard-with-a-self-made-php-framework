@@ -244,10 +244,10 @@ class ajaxController  extends myFramework
                 break;
 
             case 'sendCommentStatus':
-
                 $values['id_creator'] = $post['userid'];
                 $values['id_commentor'] = $post['useridsend'];
                 $values['text_comment'] = $post['comment'];
+                $values['created_date'] = date('Y/m/d H:i:s');
                 $values['type'] = 'status';
                 if(userModel::insertData("comments", $values))
                 {
@@ -269,11 +269,62 @@ class ajaxController  extends myFramework
                         )
                     )
                 ));
+
+                $showComment = userModel::fetchAllData('comments', array('id_commentor'=>$values['user_id_sent']));
+
+                if(!empty($showComment))
+                {
+                    if(!empty($datas))
+                    {
+                        foreach($datas as $data)
+                        {
+                            echo self::showCommentStatus($data['text_comment'],$data['type'],$data['id_creator'],$data['id_comment']);
+                        }
+                    }
+                }
+
+
+                break;
+
+            case "sendComment":
+
+                $values['id_creator'] = $post['userid'];
+                $values['id_commentor'] = $post['useridsend'];
+                $values['id_comment'] = $post['commentId'];
+                $values['comment_text'] = $post['comment'];
+                $values['created_date'] = date('Y/m/d H:i:s');
+
+                $datas = userModel::fetchAllData('comment_status', array('id_commentor'=>$values['id_commentor'],'id_creator'=> $values['id_commentor'],'created_date'=> $values['created_date']),array('fetch'=>'array'));
+
+                if($datas != null)
+                {
+                    $countDatas = count($datas);
+                }
+
+
+                    if(userModel::insertData("comment_status", $values))
+                    {
+                        echo json_encode(['status'=>'success']);
+                    }
+
+
+                break;
+
+            case "showComment";
+
+                $values['user_id'] = $post['userid'];
+                $values['user_id_sent'] = $post['useridsend'];
+                $commentDisplayId = $post['commentDisplayId'];
+
+                $datas = userModel::fetchAllData('comment_status', array('id_commentor'=>$values['user_id_sent']),array('fetch'=>'array'));
                 if(!empty($datas))
                 {
                     foreach($datas as $data)
                     {
-                        echo self::showCommentStatus($data['text_comment'],$data['type'],$data['id_creator']);
+                        if($commentDisplayId == $data['id_comment'])
+                        {
+                            echo self::showComment($data['comment_text'],$data['id_creator'],$data['id_comment']);
+                        }
                     }
                 }
 

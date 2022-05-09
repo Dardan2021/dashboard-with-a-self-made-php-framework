@@ -66,8 +66,33 @@ trait additionalFunction
         }
     }
 
-    public static function showCommentStatus($commentStatus, $type, $id)
+    public static function showCommentStatus($commentStatusText, $type, $id, $commentId)
     {
-       return '<div><div style="display:flex"><img  width="20px" height="20px" src="'.self::getpictureFileName($id).'" alt=""> <h4> '.self::getName($id).'</h4></div><p>'.$commentStatus.'</p></div>';
+        $fullCommentID = "sectionComment".$commentId;
+        $fullTextID  = "sectionText".$commentId;
+        $fullFormID = "sectionForm".$commentId;
+
+        return '<div style="height:15vh;background-color:yellow">
+                    <div style="display:flex">
+                       <img  width="20px" height="20px" src="'.self::getpictureFileName($id).'" alt="">
+                       <h3> '.self::getName($id).'</h3></div>
+                       <p style="font-size:12px;">'.$commentStatusText.'</p>
+                       <form  id="'.$fullFormID.'" class="sectionForm" style="background-color:blue;overflow: auto;">
+                          <textarea name="" id="'.$fullTextID.'" class="commentStatus" style="font-size:12px;" placeholder="writeComment" cols="24" rows="1"></textarea>
+                       </form>
+                       <div id="'.$fullCommentID.'" class="sectionComment" style="overflow:auto;"">
+                       </div>
+                    </div>';
+    }
+
+    public static function showComment($commentStatusText,  $id, $commentId)
+    {
+        return '<div style="background-color:red;">
+                    <div style="display:flex">
+                       <img  width="10px" height="10px" src="'.self::getpictureFileName($id).'" alt="">
+                       <h3> '.self::getName($id).'</h3></div>
+                       <p style="font-size:9px;">'.$commentStatusText.'</p>
+                    </div>
+                 </div>';
     }
 }

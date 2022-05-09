@@ -1,6 +1,9 @@
 function updateScroll(){
     var element = document.getElementById("chatContainer");
-    element.scrollTop = element.scrollHeight;
+    if(element != null)
+    {
+        element.scrollTop = element.scrollHeight;
+    }
 }
 $(document).ready(function() {
 
@@ -54,7 +57,10 @@ $(document).ready(function() {
         var userid = $("#id").text();
         var useridsend = $("#idSend").text();
         var element1 = document.getElementById("chatContainer");
-        var element1Height = element1.scrollHeight;
+        if(element1 != null)
+        {
+            var element1Height = element1.scrollHeight;
+        }
         $.ajax({
             type:'POST',
             url:'ajax/ajaxController/ajax',
@@ -67,18 +73,22 @@ $(document).ready(function() {
             success: function(feedback) {
                 $(".chatContainer").html(feedback);
                 var element2 = document.getElementById("chatContainer");
-                var element2Height = element2.scrollHeight;
-                if (element1Height != element2Height)
+                if(element2 != null)
                 {
-                    setTimeout(updateScroll, 100)
+                    var element2Height = element2.scrollHeight;
+                    if (element1Height != element2Height)
+                    {
+                        setTimeout(updateScroll, 100)
+                    }
                 }
+
             }
         })
     }
-    // show_message();
-    // setInterval(function(){
-    //      show_message();
-    //  },100);
+   /*  show_message();
+     setInterval(function(){
+         show_message();
+     },100);*/
 
     $("#addFriend").click(function(){
         $.ajax({
