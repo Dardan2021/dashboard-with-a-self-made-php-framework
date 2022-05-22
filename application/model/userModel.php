@@ -83,7 +83,16 @@ class userModel extends Database
                 $character = $col;
             }
 
-            self::Query("SELECT $character FROM " . "$tableName " . "WHERE " . "$querySql");
+            if(isset($params['orderBy']))
+            {
+                $orderBy = $params['orderBy'];
+
+                self::Query("SELECT $character FROM " . " $tableName " . " WHERE " . " $querySql " . " $orderBy ");
+            }
+            else
+            {
+                self::Query("SELECT $character FROM " . "$tableName " . "WHERE " . "$querySql");
+            }
 
 
             if(isset($params['fetch']))

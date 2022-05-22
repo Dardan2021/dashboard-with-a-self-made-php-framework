@@ -95,4 +95,18 @@ trait additionalFunction
                     </div>
                  </div>';
     }
+
+    public static function getLastCommentId($id)
+    {
+        $datas = userModel::fetchAllData('notifications', array('id' => $id),array("fetch"=>'value'));
+
+        if($datas != null )
+        {
+            return $datas['id_comment'];
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

@@ -63,7 +63,7 @@ $(document).ready(function() {
         })
     }
 
-    showCommentStatus();
+    // showCommentStatus();
     let commentDisplayId;
 
     function showComment(commentDisplayId)
@@ -160,13 +160,19 @@ $(document).ready(function() {
         }
     }
 
-    window.addEventListener('keypress', onKey);
+   /* window.addEventListener('keypress', onKey);
 
     window.addEventListener('load', (event) => {
         setTimeout(showComment2, 100)
-    });
+        setInterval(function(){
+            showComment2();
+        },1000);
+    })
     window.addEventListener('keypress', (event) => {
         setTimeout(showComment2, 100)
-    });
+        setInterval(function(){
+            showComment2();
+        },1000);
+    });*/
 })
 

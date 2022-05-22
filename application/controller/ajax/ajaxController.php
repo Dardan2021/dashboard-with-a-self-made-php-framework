@@ -260,29 +260,19 @@ class ajaxController  extends myFramework
 
                 $values['user_id'] = $post['userid'];
                 $values['user_id_sent'] = $post['useridsend'];
-                $datas = userModel::fetchAllData('comments', array('id_commentor'=>$values['user_id_sent']), array(
-                    'join'=> array(
-                        array(
-                            'table'=>'users',
-                            'key'=>'id_commentor',
-                            'foreignKey' => 'id'
-                        )
-                    )
-                ));
 
-                $showComment = userModel::fetchAllData('comments', array('id_commentor'=>$values['user_id_sent']));
+                $datas = userModel::fetchAllData('comments', array('id_commentor'=>$values['user_id_sent']),array('orderBy'=>'ORDER BY id_comment DESC'));
 
-                if(!empty($showComment))
+                if(!empty($datas))
                 {
-                    if(!empty($datas))
+                    foreach($datas as $data)
                     {
-                        foreach($datas as $data)
+                        if($values['user_id_sent']==$data['id_commentor'])
                         {
                             echo self::showCommentStatus($data['text_comment'],$data['type'],$data['id_creator'],$data['id_comment']);
                         }
                     }
                 }
-
 
                 break;
 
@@ -302,10 +292,10 @@ class ajaxController  extends myFramework
                 }
 
 
-                    if(userModel::insertData("comment_status", $values))
-                    {
-                        echo json_encode(['status'=>'success']);
-                    }
+                if(userModel::insertData("comment_status", $values))
+                {
+                    echo json_encode(['status'=>'success']);
+                }
 
 
                 break;
@@ -330,6 +320,49 @@ class ajaxController  extends myFramework
 
                 break;
 
+            case "countNotifications";
+
+                $id = $post['userid'];
+                $lastid = $post['lastid'];
+
+                $lastid= trim($lastid," ");
+
+                if($lastid==0)
+                {
+                    $datas = userModel::countData('comments', array('id_commentor'=>'='.$id),array('fetch'=>'array'));
+
+                }
+                else
+                {
+                    $datas = userModel::countData('comments', array('id_commentor'=>'='.$id, 'id_comment'=>'>'.$lastid),array('fetch'=>'array'));
+                }
+                echo json_encode(['status' => 'success', 'number' => $datas]);
+
+                break;
+
+            case "addLastNumber";
+
+                $values['id'] = $post['userid'];
+                $lastid = userModel::fetchAllData('comments', array('id_commentor'=>$values['id']),array('fetch'=>'value', 'orderBy'=>'ORDER BY id_comment DESC LIMIT 1'));
+                $values['id_comment'] = $lastid['id_comment'];
+                $check = userModel::countData('notifications', array('id'=>'='.$values['id']),array('fetch'=>'array'));
+
+                if($check==0)
+                {
+                    if(userModel::insertData("notifications", $values))
+                    {
+                        echo json_encode(['status' => 'success', 'number' => " ",'lastid' => $lastid['id_comment']]);
+                    }
+                }
+                else
+                {
+                    if(userModel::updateData("notifications",  array('id'=>'='.$values['id']), $values))
+                    {
+                        echo json_encode(['status' => 'success', 'number' => " ",'lastid' => $lastid['id_comment']]);
+                    }
+                }
+
+                break;
         }
 
         }

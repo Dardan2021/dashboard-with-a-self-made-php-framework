@@ -17,7 +17,6 @@ class fileAjaxController  extends myFramework
         }
         else
         {
-            var_dump($_FILES['send_file']['name']);
             move_uploaded_file($_FILES['send_file']['tmp_name'], 'C:/xampp/htdocs/integrateChat/public/uploadFile/' . $_FILES['send_file']['name']);
             echo 'success';
         }
@@ -31,7 +30,6 @@ class fileAjaxController  extends myFramework
         }
         else
         {
-            var_dump($_FILES['uploadPicture']['name']);
             move_uploaded_file($_FILES['uploadPicture']['tmp_name'], 'C:/xampp/htdocs/integrateChat/public/uploadFile/' . $_FILES['uploadPicture']['name']);
             echo 'success';
         }

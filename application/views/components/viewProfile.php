@@ -59,4 +59,13 @@
 <?php
 endif;
 ?>
+
+</div>
+<div>
+    <button class="showChat" class="btn btn-danger" id="showChat">
+        Show chat
+    </button>
+    <button class="removeChat" class="btn btn-danger" id="removeChat">
+        remove chat
+    </button>
 </div>

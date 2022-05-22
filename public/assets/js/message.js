@@ -133,6 +133,15 @@ $(document).ready(function() {
         })
     });
 
+    $("#showChat").click(function(){
+        console.log("hellos");
+        const Chat = document.querySelector('.chatContent');
+        const showChat = document.querySelector('.showChat');
+
+        Chat.style.display = 'inline';
+        showChat.style.display = 'none';
+    });
+
 });
 window.addEventListener('load', (event) => {
     setTimeout(updateScroll, 100)

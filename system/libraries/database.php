@@ -47,7 +47,7 @@ class database
     {
         if(!empty($filter) && !isset($params['join'])) {
             foreach ($filter as $columns => $value) {
-                $queryArray[] = "$columns='$value'";
+                $queryArray[] = "$columns $value ";
             }
 
             $querySql = implode("AND ", $queryArray);

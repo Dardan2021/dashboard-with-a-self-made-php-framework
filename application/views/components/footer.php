@@ -7,3 +7,4 @@
 <script src="https://localhost/integrateChat/public/assets/js/message.js"></script>
 <script src="https://localhost/integrateChat/public/assets/js/extraFeature.js"></script>
 <script src="https://localhost/integrateChat/public/assets/js/profileComments.js"></script>
+<script src="https://localhost/integrateChat/public/assets/js/notification.js"></script>
