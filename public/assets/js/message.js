@@ -48,7 +48,7 @@ $(document).ready(function() {
         }
         else
         {
-            myStop();
+
         }
     })
 
@@ -85,10 +85,10 @@ $(document).ready(function() {
             }
         })
     }
-   /*  show_message();
+    show_message();
      setInterval(function(){
          show_message();
-     },100);*/
+     },100);
 
     $("#addFriend").click(function(){
         $.ajax({
@@ -137,11 +137,22 @@ $(document).ready(function() {
         console.log("hellos");
         const Chat = document.querySelector('.chatContent');
         const showChat = document.querySelector('.showChat');
+        const hideChat = document.querySelector('.removeChat');
 
         Chat.style.display = 'inline';
         showChat.style.display = 'none';
+        hideChat.style.display = 'inline';
     });
+    $("#removeChat").click(function(){
+        console.log("hellos");
+        const Chat = document.querySelector('.chatContent');
+        const hideChat = document.querySelector('.removeChat');
+        const showChat = document.querySelector('.showChat');
 
+        Chat.style.display = 'none';
+        hideChat.style.display = 'none';
+        showChat.style.display = 'inline';
+    });
 });
 window.addEventListener('load', (event) => {
     setTimeout(updateScroll, 100)

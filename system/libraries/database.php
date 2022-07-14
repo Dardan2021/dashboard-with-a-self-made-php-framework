@@ -45,13 +45,15 @@ class database
 
     public static function countData($tableName, $filter = array(), $params = array())
     {
-        if(!empty($filter) && !isset($params['join'])) {
+        if(!empty($filter) && !isset($params['join']))
+        {
             foreach ($filter as $columns => $value) {
-                $queryArray[] = "$columns $value ";
+                $queryArray[] = "$columns= '$value' ";
             }
 
             $querySql = implode("AND ", $queryArray);
             self::Query("SELECT * FROM " . "$tableName " . "WHERE " . "$querySql");
+
             self::$Query->execute();
 
             return self::$Query->rowCount();

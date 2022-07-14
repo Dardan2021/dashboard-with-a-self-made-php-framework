@@ -494,7 +494,8 @@ nav
     width: 600px;
     height:300px;
     overflow: auto;
-    border-radius:7px;
+    border-top-left-radius:7px;
+    border-top-right-radius:7px;
     padding:2rem;
 }
 .right-message
@@ -511,18 +512,15 @@ nav
 .chatContent
 {
     position:fixed;
-    top:52%;
-    left:68%;
-    background-color:#0077b6;
-
+    top:58%;
+    left:58%;
+    background-color:#836F98;
     padding-left:10px;
     padding-right:10px;
-
-    border-radius:7px;
-
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
     white-space: nowrap;
-    padding-top:0;
-    padding-top:0;
+    padding-top:20px;
 }
 .messageText
 {

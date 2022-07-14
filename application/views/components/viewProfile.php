@@ -47,25 +47,26 @@
 <?php
     if(self::getSession("id") != $data['id']):
 ?>
-<div id="chatContent" style="display:none" class="chatContent">
+
+<div id="chatContent"  class="chatContent">
     <div class="chatContainer"  id="chatContainer"></div>
     <div></div>
-    <form id="messageChat" class="textMessage" action="">
+    <form id="messageChat" class="textMessage" style="margin-bottom:5px;" action="">
         <textarea class="form-control textMessage" id="textMessage"  name="textMessage" rows="2"></textarea>
         <input type="file" class="form-control textMessage files-upload" id="upload-files" name="send_file">
         <input type="hidden" value="<?php echo $data['id']?>" name="userid">
     </form>
-
+</div>
+        <div style="position:fixed;top:65%;left:90%">
+            <button class="showChat" style="display:none;" class="btn btn-danger" id="showChat">
+                Show chat
+            </button>
+            <button class="removeChat" class="btn btn-danger" id="removeChat">
+                remove chat
+            </button>
+        </div>
 <?php
 endif;
 ?>
 
-</div>
-<div>
-    <button class="showChat" class="btn btn-danger" id="showChat">
-        Show chat
-    </button>
-    <button class="removeChat" class="btn btn-danger" id="removeChat">
-        remove chat
-    </button>
-</div>
+

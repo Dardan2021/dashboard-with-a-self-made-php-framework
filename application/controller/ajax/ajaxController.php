@@ -59,6 +59,8 @@ class ajaxController  extends myFramework
                 }
                 else
                 {
+                    var_dump($errorEmailFind);
+                    die();
                     echo json_encode($errorEmailFind);
                 }
 

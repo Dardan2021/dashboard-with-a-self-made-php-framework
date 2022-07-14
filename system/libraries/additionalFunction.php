@@ -72,7 +72,7 @@ trait additionalFunction
         $fullTextID  = "sectionText".$commentId;
         $fullFormID = "sectionForm".$commentId;
 
-        return '<div style="height:15vh;background-color:yellow">
+        return '<div style="height:15vh;">
                     <div style="display:flex">
                        <img  width="20px" height="20px" src="'.self::getpictureFileName($id).'" alt="">
                        <h3> '.self::getName($id).'</h3></div>
@@ -87,7 +87,7 @@ trait additionalFunction
 
     public static function showComment($commentStatusText,  $id, $commentId)
     {
-        return '<div style="background-color:red;">
+        return '<div style="">
                     <div style="display:flex">
                        <img  width="10px" height="10px" src="'.self::getpictureFileName($id).'" alt="">
                        <h3> '.self::getName($id).'</h3></div>
